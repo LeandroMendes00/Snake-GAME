@@ -1,15 +1,20 @@
-const canvas = document.querySelector("canvas")
-const ctx = canvas.getContext("2d")
+<!-- Renderiza o jogo -->
+const canvas = document.querySelector("canvas") 
+<!-- Ctx contexto 2D -->
+const ctx = canvas.getContext("2d") 
 
 const size = 30
 
+<!-- Deterima sua posição no canvas -->
 const snake = [
     { x: 200, y:200},
     { x: 230, y:200},   
 ]
 
+<!-- Armazena a direção da cobrinha -->
 let direction, loopId
 
+<!-- Desenha a cobrinha no canvas -->
 const drawSnake = () => {
     ctx.fillStyle = "#ddd"
     
@@ -22,6 +27,7 @@ const drawSnake = () => {
     })
 }
 
+<!-- Move a cobrinha e a desenha -->
 const moveSnake = () => {
     if(!direction) return
 
@@ -46,6 +52,7 @@ const moveSnake = () => {
     snake.shift()
 }
 
+<!-- Move a cobrinha e a desenha -->
 const gameLoop = () => {
     clearInterval(loopId)
     
@@ -58,6 +65,7 @@ const gameLoop = () => {
     }, 300)
 }
 
+<!-- Inicia o loop -->
 gameLoop()
 
 
