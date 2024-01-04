@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
+<!-- Seletor Universal -->
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppings'sans-serif;
 }
-
+<!-- Seletor de Elemento -->
 body {
     background-color: #191919;
     display: flex;
@@ -16,7 +17,7 @@ body {
     flex-direction: column;
     color: white;
 }
-
+<!-- Seletor de Elemento -->
 canvas {
     background-color: #111;    
 }
