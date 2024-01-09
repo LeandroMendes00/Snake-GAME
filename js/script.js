@@ -10,7 +10,7 @@ const snake = [{ x: 270, y:240}]
 const randomNumber = (min, max) => {
     return Math.round(Math.random() * (max - min) + min)
 }
-
+/* Gera uma posição aleatória dentro do canvas */
 const randomPosition = () => {
     const number = randomNumber(0, canvas.width - size)
     return Math.round(number / 30) * 30
@@ -23,7 +23,7 @@ const randomColor = () => {
 
     return `rgb(${red}, ${green}, ${blue})`
 }
-
+/* EXCLUIR */
 h1.innerText = randomNumber()
 
 const food = {
