@@ -1,7 +1,7 @@
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
 
-const h1 = document.querySelector("h1")
+const audio = new Audio('../assets/audio.mp3')
 
 const size = 30
 
@@ -23,8 +23,6 @@ const randomColor = () => {
 
     return `rgb(${red}, ${green}, ${blue})`
 }
-/* EXCLUIR */
-h1.innerText = randomNumber()
 
 const food = {
     x: randomPosition(),
@@ -37,7 +35,6 @@ let direction, loopId
 const drawnFood = () => {
 
     const { x, y , color } = food
-
     ctx.shadowColor = color
     ctx.shadowBlur = 6
     ctx.fillStyle = color
@@ -98,7 +95,26 @@ const drawGrid = () => {
     }    
 }
 
-drawGrid()
+const chackEat = () => {
+    const head = snake[snake.length -1]
+    if (head.x == food.x && head.y == food.y) {
+        snake.push(head)
+        audio.play()
+
+        let x = randomPosition()
+        let y = randomPosition()
+
+        
+        while (snake.find((position) => position.x == x && position.y == y)) {
+             x = randomPosition()
+             y = randomPosition()
+        }
+
+        food.x = x
+        food.y = y
+        food.color = randomColor()
+    }
+}
 
 const gameLoop = () => {
     clearInterval(loopId)
@@ -108,6 +124,7 @@ const gameLoop = () => {
     drawnFood()
     moveSnake()
     drawSnake()
+    chackEat()
     
     loopId = setInterval(() => {
         gameLoop()
