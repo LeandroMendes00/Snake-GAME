@@ -1,16 +1,20 @@
+/* Jogo do Snake(cobrinha) em um canvas HTML5 */
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
+/* Código seleciona o elemento HTML e obtém o contexto 2D para desenhar */
 
 const audio = new Audio('../assets/audio.mp3')
+/* Objeto `Audio` reproduzir o arquivo de aúdio */
 
 const size = 30
 
 const snake = [{ x: 270, y:240}]
+/* Define o tamanho do quadrado no jogo (`size`) e inicia a cobra em uma posição incial */
 
 const randomNumber = (min, max) => {
     return Math.round(Math.random() * (max - min) + min)
 }
-/* Gera uma posição aleatória dentro do canvas */
+
 const randomPosition = () => {
     const number = randomNumber(0, canvas.width - size)
     return Math.round(number / 30) * 30
@@ -23,14 +27,17 @@ const randomColor = () => {
 
     return `rgb(${red}, ${green}, ${blue})`
 }
+/* Funções geram números aleatórios, posições aleatórias dentro do canvas e cores RGB aleatórias */
 
 const food = {
     x: randomPosition(),
     y: randomPosition(),
     color: randomColor()
 }
+/* Inicia a posição aleatória da comida e muda a cor */
 
 let direction, loopId
+/* Variáveis de Controle */
 
 const drawnFood = () => {
 
@@ -41,6 +48,7 @@ const drawnFood = () => {
     ctx.fillRect(x, y, size, size)
     ctx.shadowBlur = 0
 }
+/* Desenho da comida */
 
 const drawSnake = () => {
     ctx.fillStyle = "#ddd"
@@ -53,6 +61,7 @@ const drawSnake = () => {
         ctx.fillRect(position.x, position.y, size, size)
     })
 }
+/* Desenho da Cobrinha */
 
 const moveSnake = () => {
     if(!direction) return
@@ -77,6 +86,7 @@ const moveSnake = () => {
 
     snake.shift()
 }
+/* Movimento da Cobrinha */
 
 const drawGrid = () => {
     ctx.lineWidth = 1   
@@ -94,6 +104,7 @@ const drawGrid = () => {
         ctx.stroke()
     }    
 }
+/* Desenho da Grade do Jogo */
 
 const chackEat = () => {
     const head = snake[snake.length -1]
@@ -115,6 +126,7 @@ const chackEat = () => {
         food.color = randomColor()
     }
 }
+/* Verificação de Comida Consumida */
 
 const gameLoop = () => {
     clearInterval(loopId)
@@ -130,9 +142,10 @@ const gameLoop = () => {
         gameLoop()
     }, 300)
 }
+/* Loop do Jogo */
 
 gameLoop()
-
+/* Inicia o Game */
 document.addEventListener("keydown", ({ key }) => {
     if (key == "ArrowRight" && direction != "left" ) {
         direction = "right"
