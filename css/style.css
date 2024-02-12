@@ -22,6 +22,7 @@ canvas {
     background-color: #111;    
 }
 
+/* Classe .score, .score--value, .menu-screen, .game-over, .final-score, btn-play */
 .score {
     display: flex;
     flex-direction: column;
